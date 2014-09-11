@@ -1,0 +1,29 @@
+{
+  "name": "javascripts",
+  "version": "0.0.1",
+  "homepage": "https://github.com/luismolina13/lukami",
+  "authors": [
+    "Luis Molina <luismol@umich.edu>"
+  ],
+  "description": "Front-end js packages",
+  "main": "index.js",
+  "moduleType": [
+    "amd",
+    "node"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "underscore": "~1.7.0",
+    "backbone": "~1.1.2",
+    "jquery": "~2.1.1",
+    "react": "~0.11.1"
+  }
+}
