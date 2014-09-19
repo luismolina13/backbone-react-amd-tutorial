@@ -3,7 +3,7 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'jsx!views_src/users/list'
+  'jsx!views/users/list'
 ], function($, _, Backbone, UserListView){
 
   $.ajaxPrefilter( function( options, originalOptions, jqXHR ) {

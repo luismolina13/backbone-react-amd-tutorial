@@ -14,44 +14,44 @@ define([
     {firstname: 'Jordan', lastname:'Walke', age:'40', id:'34'}
   ];
 
-  var User =  React.createClass({displayName: 'User',
+  var User =  React.createClass({
     render: function() {
       return (
-        React.DOM.tr({key: this.props.id}, 
-          React.DOM.td(null, this.props.firstname), 
-          React.DOM.td(null, this.props.lastname), 
-          React.DOM.td(null, this.props.age), 
-          React.DOM.td(null, React.DOM.a({className: "btn", href: "#/edit/{this.props.id}"}, "Edit"))
-        )
+        <tr key={this.props.id}>
+          <td>{this.props.firstname}</td>
+          <td>{this.props.lastname}</td>
+          <td>{this.props.age}</td>
+          <td><a className='btn' href={'#/edit/' + this.props.id}>Edit</a></td>
+        </tr>
       );
     }
   });
 
-  var UserList = React.createClass({displayName: 'UserList',
+  var UserList = React.createClass({
     handleClick: function() {
       alert('Hello!');
     },
     render: function() {
       var userNodes = this.props.data.map(function (user) {
         return (
-          User({firstname: user.firstname, lastname: user.lastname, age: user.age, id: user.id})
+          <User firstname={user.firstname} lastname={user.lastname} age={user.age} id={user.id} />
         );
       });
       return (
-        React.DOM.div(null, 
-          React.DOM.a({href: "#/new", className: "btn btn-primary", onClick: this.handleClick}, "New"), 
-          React.DOM.hr(null), 
-          React.DOM.table({className: "table striped"}, 
-            React.DOM.thead(null, 
-              React.DOM.tr(null, 
-                React.DOM.th(null, "First Name"), React.DOM.th(null, "Last Name"), React.DOM.th(null, "Age"), React.DOM.th(null)
-              )
-            ), 
-            React.DOM.tbody(null, 
-              userNodes
-            )
-          )
-        )
+        <div>
+          <a href='#/new' className='btn btn-primary' onClick={this.handleClick}>New</a>
+          <hr />
+          <table className='table striped'>
+            <thead>
+              <tr>
+                <th>First Name</th><th>Last Name</th><th>Age</th><th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {userNodes}
+            </tbody>
+          </table>
+        </div>
       );
     }
   });
@@ -61,7 +61,7 @@ define([
     template: '<div class="user-list-container"></div>',
     render: function () {
       this.$el.html(this.template);
-      React.renderComponent(UserList({data: data}), this.$('.user-list-container').get(0));
+      React.renderComponent(<UserList data={data} />, this.$('.user-list-container').get(0));
       // return this;
       // var that = this;
       // var users = new Users();
