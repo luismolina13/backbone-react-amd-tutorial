@@ -3,7 +3,7 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'jsx!views/users/list'
+  'jsx!views_src/users/list'
 ], function($, _, Backbone, UserListView){
 
   $.ajaxPrefilter( function( options, originalOptions, jqXHR ) {
@@ -12,9 +12,9 @@ define([
 
   var Router = Backbone.Router.extend({
         routes: {
-          "": "home", 
-          "edit/:id": "edit",
-          "new": "edit",
+          '': 'home', 
+          'edit/:id': 'edit',
+          'new': 'edit',
         }
     });
 

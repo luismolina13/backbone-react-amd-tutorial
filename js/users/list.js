@@ -17,15 +17,18 @@ define([
   var User =  React.createClass({displayName: 'User',
     render: function() {
       return (
-        React.DOM.tr({key: this.props.id}, 
-          React.DOM.td(null, this.props.firstname), 
-          React.DOM.td(null, this.props.lastname), 
-          React.DOM.td(null, this.props.age), 
-          React.DOM.td(null, React.DOM.a({className: "btn", href: "#/edit/{this.props.id}"}, "Edit"))
+        React.DOM.div({className: "user"}, 
+          React.DOM.h3(null, "Hello")
         )
       );
     }
   });
+          // <tr>
+          //   <td>{this.props.firstname}</td>
+          //   <td>{this.props.lastname}</td>
+          //   <td>{this.props.age}</td>
+          //   <td><a className='btn' href='#/edit/{this.props.id}'>Edit</a></td>
+          // </tr>
 
   var UserList = React.createClass({displayName: 'UserList',
     handleClick: function() {
@@ -48,7 +51,8 @@ define([
               )
             ), 
             React.DOM.tbody(null, 
-              userNodes
+              User(null), 
+              User(null)
             )
           )
         )
