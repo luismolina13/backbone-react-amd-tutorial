@@ -7,12 +7,7 @@ define([
   'backbone',
   'react',
   '../../collections/users'
-], function($, _, Backbone, React){ 
-
-  var data = [
-    {firstname: 'Pete', lastname:'Hunt', age:'20', id:'234'},
-    {firstname: 'Jordan', lastname:'Walke', age:'40', id:'34'}
-  ];
+], function($, _, Backbone, React, Users){ 
 
   var User =  React.createClass({
     render: function() {
@@ -34,7 +29,7 @@ define([
     render: function() {
       var userNodes = this.props.data.map(function (user) {
         return (
-          <User firstname={user.firstname} lastname={user.lastname} age={user.age} id={user.id} />
+          <User firstname={user.attributes.firstname} lastname={user.attributes.lastname} age={user.attributes.age} id={user.attributes.id} />
         );
       });
       return (
@@ -60,17 +55,14 @@ define([
     el: '.page',
     template: '<div class="user-list-container"></div>',
     render: function () {
-      this.$el.html(this.template);
-      React.renderComponent(<UserList data={data} />, this.$('.user-list-container').get(0));
-      // return this;
-      // var that = this;
-      // var users = new Users();
-      // users.fetch({
-      //   success: function (users) {
-      //     var template = _.template($('#user-list-template').html(), {users: users.models});
-      //     that.$el.html(template);
-      //   }
-      // })
+      var users = new Users();
+      var that = this;
+      users.fetch({
+        success: function (users) {
+          that.$el.html(that.template);
+          React.renderComponent(<UserList data={users} />, that.$('.user-list-container').get(0));
+        }
+      });
     }
   });
 
